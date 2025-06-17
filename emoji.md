@@ -1,0 +1,353 @@
+# Liste complète d'émojis pour enrichir du code source
+
+https://unicode.org/emoji/charts/full-emoji-list.html
+https://emojipedia.org
+https://gitmoji.dev
+
+
+## ✅ Validation et statut
+- ✅ : Succès, validation
+- ❌ : Échec, erreur
+- ⚠️ : Avertissement, attention
+- ℹ️ : Information, note
+- 🟢 : Démarrage, opérationnel
+- 🔴 : Arrêt, problème critique
+- 🟡 : En attente, intermédiaire
+- 🟠 : Priorité moyenne, à surveiller
+- 🔵 : Information système, notification
+- ⏳ : Chargement, traitement en cours
+- ⌛ : Temps écoulé, expiration
+- 🚦 : Statut du système, flux de travail
+- 🚥 : Points de contrôle, étapes
+- 🚫 : Blocage, fonctionnalité désactivée
+- ✋ : Interruption manuelle
+- 🛡️ : Protection, sécurité validée
+
+## 🛠️ Actions et flux
+- 📝 : Formulaire, saisie, rédaction
+- ✏️ : Modification, édition
+- ➕ : Ajout, création
+- ➖ : Suppression, retrait
+- 🔄 : Mise à jour, rafraîchissement
+- 🔁 : Boucle, répétition
+- 🚀 : Lancement, déploiement, optimisation
+- 🛑 : Stop, annulation
+- 🔍 : Recherche, analyse
+- 📥 : Entrée de données, import
+- 📤 : Sortie de données, export
+- 🔃 : Synchronisation, échange de données
+- 🔀 : Fusion, mélange
+- 🔙 : Retour arrière, annulation
+- 🔜 : Prochaine étape, à venir
+- ↪️ : Redirection, forwarding
+- ↩️ : Retour, réponse
+- 📨 : Envoi, transmission
+- 📲 : Notification push, alerte mobile
+- 🏗️ : Construction, build
+- 🧹 : Nettoyage, refactoring
+- 🔗 : Lien, référence
+- 📌 : Point d'ancrage, signet
+- 📎 : Pièce jointe, attachment
+- 🔖 : Marqueur, tag
+- 🔨 : Construction, build
+- 📱 : Mobile, responsive
+- 🖥️ : Desktop, application locale
+
+## 🗂️ Données et fichiers
+- 🗂️ : Dossier, organisation
+- 📂 : Répertoire, répertoire de projet
+- 📄 : Document, fichier
+- 🗒️ : Note, commentaire
+- 💾 : Sauvegarde, persistance
+- 🗑️ : Suppression, nettoyage
+- 📊 : Statistiques, reporting
+- 📈 : Croissance, amélioration
+- 📉 : Diminution, problème
+- 📃 : Document texte, rapport
+- 📑 : Multiple fichiers, documents
+- 📚 : Documentation, bibliothèque
+- 📋 : Presse-papiers, copier-coller
+- 🔢 : Données numériques, statistiques
+- 📓 : Journal, log
+- 📔 : Registre, catalogue
+- 📁 : Dossier fermé, archive
+- 📒 : Carnet, notes de développement
+- 🧾 : Reçu, confirmation
+- 🗃️ : Archivage, stockage longue durée
+- 📇 : Base de données, index
+- 📫 : Boîte de réception, messages
+- 📮 : Envoi, queue de messages
+- 📝 : Formulaire, données saisies
+- 📦 : Package, livrable
+- 🗓️ : Planification des données
+- 📕 : Livre fermé, documentation finalisée
+- 📗 : Documentation utilisateur
+- 📘 : Documentation technique
+- 📙 : Documentation d'API
+
+## ⚙️ Technique et infrastructure
+- ⚙️ : Configuration, paramétrage
+- 🛠️ : Développement, outil
+- 🔧 : Maintenance, correction
+- 🐛 : Bug, anomalie
+- 🔒 : Sécurité, chiffrement, accès
+- 🔓 : Déverrouillage, permission
+- 💡 : Astuce, optimisation
+- 🌐 : Réseau, API, web service
+- 🧱 : Composant, module
+- 🧩 : Intégration, dépendance
+- 🔌 : Plugin, extension
+- 🖧 : Réseau, connexion
+- 📶 : Signal, connexion sans fil
+- 🔋 : Batterie, énergie, performances
+- ⚡ : Électricité, charge rapide
+- 🖥️ : Serveur, ordinateur
+- 🌍 : Service global, internationalisation
+- 📡 : Satellite, communication distante
+- 🔭 : Monitoring, observation
+- 📱 : Mobile, application
+- 💽 : Disque, stockage
+- 🗜️ : Compression, optimisation
+- 🧮 : Calcul, algorithme
+- 🧬 : Structure complexe, architecture
+- 🧯 : Extinction d'incendie, résolution de crise
+- 🚰 : Pipeline, flux de données
+- 🏭 : Usine, automatisation
+- 🔩 : Vis, détail technique
+- 🧰 : Boîte à outils, utilitaires
+- 🗡️ : Attaque, pénétration
+- 🛡️ : Défense, protection
+- 🦠 : Virus, infection
+- 🧲 : Aimant, attraction de données
+- 🧵 : Thread, processus parallèle
+- 🧶 : Complexité, interdépendance
+
+## 🕒 Temps et planification
+- 🕒 : Planification, délai
+- ⏰ : Rappel, échéance
+- 📅 : Date, calendrier
+- 🕹️ : Tâche à effectuer, commande
+- ⌚ : Temps réel, suivi
+- ⏱️ : Chronomètre, mesure de performances
+- ⏲️ : Minuteur, timeout
+- 🗓️ : Planificateur, agenda
+- 📆 : Calendrier, planning
+- 🔔 : Alerte, notification temporelle
+- 🔕 : Notification silencieuse, action en arrière-plan
+- ⌛ : Sablier, attente
+- 🕰️ : Horloge système, timestamp
+- 📣 : Annonce planifiée, broadcast
+- 🏁 : Fin, objectif atteint
+- 🚩 : Drapeau, jalon (milestone)
+- 🏳️ : Abandon, report
+- 🔄 : Récurrent, périodique
+
+## 🧪 Tests et qualité
+- 🧪 : Test, expérimentation
+- ✅ : Test réussi, vérification OK
+- ❌ : Test échoué, échec
+- 📊 : Couverture, métrique
+- 🧐 : Revue de code, inspection
+- 🔬 : Analyse détaillée, débogage profond
+- 🧫 : Culture de test, environnement de test
+- 🧬 : Structure de test, modèle
+- 🔍 : Inspection, recherche de bugs
+- 📏 : Mesure, benchmark
+- 📐 : Conception, architecture testée
+- 🧮 : Calcul, vérification mathématique
+- 🧠 : Intelligence, tests cognitifs
+- 🦮 : Guide, test d'accessibilité
+- 🔎 : Analyse fine, recherche précise
+- 👁️ : Observation, monitoring
+- 👀 : Examen visuel, revue UI/UX
+- 🧭 : Orientation, test de navigation
+- 🧯 : Gestion des incidents, plan de secours
+- 🧾 : Rapport de test, documentation QA
+- 📋 : Liste de contrôle, validation
+- 🎯 : Cible, objectif de test
+- 📢 : Annonce de résultats, rapport
+- 🏆 : Réussite, certification
+
+## 💬 Communication et collaboration
+- 💬 : Message, discussion
+- 📢 : Annonce, notification
+- 📨 : Mail, messagerie
+- 🤝 : Collaboration, partenariat
+- 👥 : Équipe, groupe
+- 🗣️ : Commentaire, feedback vocal
+- 📣 : Annonce, broadcast
+- 🔊 : Message sonore, alerte audio
+- 🔇 : Mode silencieux, ne pas déranger
+- 📞 : Appel, communication synchrone
+- 📲 : Contact, notification mobile
+- 💭 : Pensée, idée partagée
+- 💡 : Suggestion, idée brillante
+- 🗯️ : Discussion technique, débat
+- 🤔 : Réflexion, question
+- 👍 : Approbation, validation
+- 👎 : Désapprobation, rejet
+- 👌 : OK, précision
+- 👋 : Accueil, salutation
+- 🙋 : Question, demande
+- 🙌 : Célébration, réussite d'équipe
+- 👏 : Applaudissement, reconnaissance
+- 🌟 : Distinction, mise en avant
+- 📝 : Prise de notes, compte-rendu
+- 📌 : Point important, à retenir
+- 🔖 : Signet, référence future
+- 🏷️ : Étiquette, catégorisation
+- 📧 : Email, communication formelle
+- 🗓️ : Planification de réunion
+- 👪 : Communauté, utilisateurs
+
+## 🚩 Git et versioning
+- 🔀 : Merge, fusion de branches
+- 🌿 : Branche, fork
+- 🌱 : Initialisation, nouveau projet
+- 🏷️ : Tag, version
+- 📝 : Commit, modification
+- 🔍 : Code review, pull request
+- 🛡️ : Protection de branche
+- 🧪 : Tests automatisés, CI/CD
+- 🔧 : Configuration, settings
+- 📊 : Statistiques de projet
+- 🧰 : Outils de développement
+- 📦 : Package, livrable
+- 🗂️ : Organisation du code
+- 📑 : Documentation, README
+- ↩️ : Revert, annulation
+- 🔄 : Mise à jour, pull
+- ⬆️ : Push, envoi de code
+- 🗑️ : Suppression, clean
+- 🔒 : Verrouillage, protection
+- 🚀 : Déploiement, release
+- 🧹 : Nettoyage de code
+- 🧱 : Structure du projet
+- 🧩 : Composants modulaires
+- 🌐 : Remote, dépôt distant
+
+## 📊 Analyse de données et BI
+- 📊 : Graphique, visualisation
+- 📈 : Croissance, tendance positive
+- 📉 : Décroissance, tendance négative
+- 🧮 : Calcul, traitement
+- 🔍 : Exploration de données
+- 🧠 : Intelligence artificielle, ML
+- 📇 : Base de données, stockage
+- 🔢 : Chiffres, valeurs numériques
+- 🧩 : Corrélation, patterns
+- 🗃️ : Archive de données, historique
+- 📆 : Données temporelles, séries
+- 📰 : Rapport, dashboard
+- 📡 : Acquisition de données
+- 🧫 : Échantillonnage, test
+- 🧲 : Extraction de données
+- 🚿 : Nettoyage de données
+- 🔗 : Relations, jointures
+- 📌 : Points de données importants
+- 🔎 : Analyse détaillée
+- 💹 : Analyse financière
+- 🧿 : Détection d'anomalies
+- 📋 : Liste, inventaire
+- 📜 : Rapport détaillé, logs
+- 🎲 : Aléatoire, échantillonnage
+- 🎯 : Prédiction, objectif
+
+## 🔐 Sécurité et permissions
+- 🔐 : Sécurité, protection
+- 🔒 : Verrouillage, accès restreint
+- 🔓 : Déverrouillage, accès accordé
+- 🔑 : Clé, authentification
+- 🔏 : Signature, non-répudiation
+- 🛡️ : Protection, défense
+- 👁️ : Surveillance, monitoring
+- 👤 : Utilisateur, compte
+- 👥 : Groupes, rôles
+- 🔍 : Audit, inspection
+- ⚠️ : Alerte de sécurité
+- 🚨 : Incident critique
+- 🔰 : Débutant, accès limité
+- 🧿 : Protection contre les menaces
+- 🕵️ : Investigation, détection
+- 🔮 : Prédiction de risques
+- 📝 : Journal d'audit, logs
+- 🧾 : Certification, conformité
+- 🧰 : Outils de sécurité
+- 🚫 : Blocage, interdiction
+- ⛔ : Accès refusé, unauthorized
+- 🚧 : Zone restreinte, en quarantaine
+- 🩹 : Correctif, patch
+- 💉 : Injection, test de pénétration
+- 🧪 : Test de sécurité
+- 📢 : Alerte, notification
+
+## 📱 Interface utilisateur
+- 📱 : Mobile, responsive
+- 🖥️ : Desktop, poste de travail
+- 📺 : Écran, affichage
+- 🖱️ : Souris, pointeur
+- ⌨️ : Clavier, saisie
+- 👆 : Tap, clic
+- 👇 : Sélection, pointer
+- 👈 : Navigation gauche
+- 👉 : Navigation droite
+- 👆 : Navigation haut
+- 👇 : Navigation bas
+- 🔍 : Recherche, loupe
+- 🔎 : Zoom, détail
+- 📋 : Formulaire, saisie
+- 📝 : Édition, modification
+- 🖌️ : Style, design
+- 🎨 : Couleur, thème
+- 🌓 : Mode sombre/clair
+- 📊 : Graphique, visualisation
+- 🧩 : Widget, composant
+- 🔘 : Bouton, action
+- ✅ : Case à cocher, option
+- 🔄 : Rafraîchissement, reload
+- 🔔 : Notification, alerte
+- 🔕 : Mode silencieux
+- 🗂️ : Onglets, navigation
+- 📑 : Favoris, marque-pages
+- 📌 : Épinglé, important
+- 📏 : Mise en page, layout
+- 🧮 : Calculatrice, fonctions
+
+## 🎉 Divers et fun (optionnel)
+- 🎉 : Succès, accomplissement
+- 🧨 : Incident, gros problème
+- 🕵️ : Debugging, investigation
+- 🌟 : Fonctionnalité phare
+- 💥 : Crash, panne critique
+- 🔮 : Prédiction, anticipation
+- 🎯 : Objectif atteint, précision
+- 🎲 : Aléatoire, hasard
+- 🎭 : Test A/B, différentes versions
+- 🧙 : Expert, solution avancée
+- 🦄 : Projet unique, innovation
+- 🦊 : Firefox (navigateur)
+- 🐘 : PostgreSQL, PHP
+- 🐍 : Python
+- 🦫 : Go (golang)
+- 🐪 : Perl
+- 🦒 : Java (JVM)
+- 🦢 : Swift
+- 🦅 : C/C++
+- 🐇 : RabbitMQ, performance
+- 🐢 : Lenteur, dette technique
+- 🦔 : Protection, défense
+- 🦉 : Sagesse, bonnes pratiques
+- 🦑 : Docker, conteneurs
+- 🐳 : Docker (logo officiel)
+- ☕ : Java, café pour développeurs
+- 🍪 : Cookie, stockage local
+- 🥪 : Stack technique
+- 🌶️ : Performance, optimisation chaude
+- 🧀 : Legacy code, code "fromage"
+- 💎 : Ruby, qualité premium
+- 🪙 : Blockchain, crypto
+- 🧊 : AWS, cloud computing
+- 🔥 : Firebase, tendance chaude
+- 🌱 : Spring, développement durable
+- 🍃 : MongoDB, légèreté
+- 🦖 : Code legacy, ancien système
