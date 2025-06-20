@@ -1,12 +1,13 @@
-<h2 mat-dialog-title>Affichage Bai</h2>
+<h2 mat-dialog-title>Affichage Bai  nombre {{canvasItems.length}}</h2>
 
 <mat-dialog-content>
-  <ngx-spinner [fullScreen]="false" size="medium" type="line-scale">
-    <p style="color: white">Chargement...</p>
-  </ngx-spinner>
+
 
  <!-- Le <pre> gère le défilement pour tous les canevas qu'il contient. -->
-  <pre #preElement class="secure-pre">
+  <pre #preElement class="secure-pre" (scroll)="onScroll($event)" (wheel)="onWheel($event)">
+     <ngx-spinner [fullScreen]="false" size="medium" type="line-scale">
+    <p style="color: white">Chargement...</p>
+  </ngx-spinner>
     <!--
       Aucun style en ligne ici. Le CSS externe gère l'apparence.
       Les canevas s'empileront verticalement sans espace.
@@ -16,6 +17,7 @@
       *ngFor="let item of canvasItems"
       class="secure-canvas">
     </canvas>
+
   </pre>
 
 </mat-dialog-content>

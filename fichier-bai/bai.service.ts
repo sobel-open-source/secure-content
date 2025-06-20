@@ -1,6 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 
+
+
+export interface PaginatedResponse {
+
+content: string; // Contenu chiffré en Base64
+
+pageNumber: number; // Numéro de la page courante
+
+totalPages: number; // Nombre total de pages
+
+}
+
 @Injectable({
   providedIn: 'root',
 })

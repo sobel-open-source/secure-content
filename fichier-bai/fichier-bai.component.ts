@@ -9,12 +9,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
-import { BaiFichierService } from './bai.service';
+import { BaiFichierService, PaginatedResponse } from './bai.service';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, Subscription } from 'rxjs';
 import { SecureWebGLService } from './secure-webgl.service';
 import { WebGLRenderer } from './webgl-renderer.class';
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @Component({
@@ -30,7 +31,8 @@ import { WebGLRenderer } from './webgl-renderer.class';
         MatCardModule,
         MatListModule,
         MatChipsModule,
-        MatGridListModule
+        MatGridListModule,
+        MatProgressSpinnerModule
   ],
   templateUrl: './fichier-bai.component.html',
   styleUrl: './fichier-bai.component.scss'
@@ -45,17 +47,7 @@ export class FichierBaiComponent implements OnInit, OnDestroy  {
       protected readonly changeDetectorRef = inject(ChangeDetectorRef);
         protected readonly spinnerService = inject(NgxSpinnerService);
 
- // --- Injections et références de la vue ---
-  private webglService = inject(SecureWebGLService);
-  private ngZone = inject(NgZone);
 
-  @ViewChildren('canvas') private canvasRefs!: QueryList<ElementRef<HTMLCanvasElement>>;
-  @ViewChild('preElement', { static: true }) private preRef!: ElementRef<HTMLPreElement>;
-
-  // --- Propriétés publiques et privées ---
-  public canvasItems: any[] = [];
-  private renderers: WebGLRenderer[] = [];
-  private debugDetectorInterval: any = null;
 
 
 
@@ -63,26 +55,17 @@ export class FichierBaiComponent implements OnInit, OnDestroy  {
     texte = '';
 
        ngOnInit() {
+
+
+ // Le piège est activé dès l'initialisation du composant, AVANT l'arrivée des données.
+    this.chargerPageBai(0);
     this.startDebugDetector();
-        this.spinnerService.show();
-           this.traiterFichierBAI();
 
         }
 
 
-  ngOnDestroy(): void {
-    // Appelle la méthode de nettoyage centralisée lors de la destruction du composant.
-    this.destroyDataForSecurity('Composant détruit');
-  }
-
-  // --- Écouteurs d'événements du navigateur ---
-
-  @HostListener('window:blur')
-  onWindowBlur(): void {
-    this.destroyDataForSecurity('Perte de focus');
-  }
-
-async traiterFichierBAI(): Promise<void> {
+async chargerPageBai(pageNumber: number): Promise<void> {
+   this.spinnerService.show();
     try {
         // 1. Génération clé AES-GCM + IV
         const aesKey = await window.crypto.subtle.generateKey(
@@ -111,20 +94,25 @@ async traiterFichierBAI(): Promise<void> {
         );
 
         // 5. Envoi au backend
-        const encryptedResponse = await firstValueFrom(
-            this.http.post(
+        const paginatedResponse = await firstValueFrom(
+            this.http.post<PaginatedResponse>(
                 'http://localhost:5050/api/fichier-bai/chiffrer',
                 {
                     aesKeyEncrypted: this.arrayBufferToBase64(encryptedKey),
                     iv: this.arrayBufferToBase64(iv),
-                    algorithm: 'AES-GCM-RSA-OAEP'
+                    algorithm: 'AES-GCM-RSA-OAEP',
+                    page: pageNumber,
+                    size: 1500,
                 },
-                    { responseType: 'text' } // On attend du texte brut
+                    { responseType: 'json' } // On attend du texte brut
             )
         );
 
     // 7. Traiter la réponse chiffrée
-        const fullData = this.base64ToArrayBuffer(encryptedResponse);
+        const fullData = this.base64ToArrayBuffer(paginatedResponse.content);
+
+        this.totalPages = paginatedResponse.totalPages;
+        this.setPage(paginatedResponse.pageNumber);
 
 
         // L'IV est les premiers 12 octets (GCM)
@@ -152,9 +140,10 @@ async traiterFichierBAI(): Promise<void> {
         const fullname =  'Jack Tremblley';
         const code =  'DK2563';
      this.displayDecryptedContent(new TextDecoder().decode(decryptedBuffer), fullname, code);
-
+ this.spinnerService.hide();
     } catch (error) {
         console.error('Erreur:', error);
+         this.spinnerService.hide();
         throw error;
     }
 }
@@ -195,12 +184,36 @@ private base64ToArrayBuffer(base64: string): ArrayBuffer {
 
 
 
+ // --- Injections et références de la vue ---
+  private webglService = inject(SecureWebGLService);
+  private ngZone = inject(NgZone);
+
+  @ViewChildren('canvas') private canvasRefs!: QueryList<ElementRef<HTMLCanvasElement>>;
+  @ViewChild('preElement', { static: true }) private preRef!: ElementRef<HTMLPreElement>;
+
+  // --- Propriétés publiques et privées ---
+  public canvasItems: any[] = [];
+  private renderers: WebGLRenderer[] = [];
+  private debugDetectorInterval: any = null;
+
   // --- Hooks du cycle de vie d'Angular ---
 
+  ngOnDestroy(): void {
+    // Appelle la méthode de nettoyage centralisée lors de la destruction du composant.
+    this.destroyDataForSecurity('Composant détruit');
+  }
+
+  // --- Écouteurs d'événements du navigateur ---
+
+  @HostListener('window:blur')
+  onWindowBlur(): void {
+    //this.destroyDataForSecurity('Perte de focus');
+  }
 
   // --- Méthodes publiques ---
 
   public displayDecryptedContent(dataTexte: string, fullname: string, codeUnique: string): void {
+
     const allLines = dataTexte.split('\n');
     const textChunks: string[] = [];
     const chunkSize = 500;
@@ -238,7 +251,7 @@ private base64ToArrayBuffer(base64: string): ArrayBuffer {
   // --- Méthodes privées de sécurité et de nettoyage ---
 
   private startDebugDetector(): void {
-    this.ngZone.runOutsideAngular(() => {
+  /*  this.ngZone.runOutsideAngular(() => {
       const dimensionThreshold = 160;
       const timingThreshold = 500;
 
@@ -257,7 +270,7 @@ private base64ToArrayBuffer(base64: string): ArrayBuffer {
           });
         }
       }, 1000);
-    });
+    }); */
   }
 
   /**
@@ -285,5 +298,193 @@ private base64ToArrayBuffer(base64: string): ArrayBuffer {
       this.renderers.forEach(renderer => renderer.destroy());
       this.renderers = [];
   }
+
+// Propriétés du composant simplifiées
+public totalPages = 0;
+public currentPage: number | null = null;
+private lastScrollTop = 0;
+private isResettingScroll = false;
+
+// @ViewChild('preRef') private preRef: ElementRef;
+
+/**
+ * Met à jour l'état de la pagination de manière fiable.
+ */
+private setPage(page: number): void {
+  if (this.currentPage === page) {
+    return;
+  }
+  this.currentPage = page;
+  const previousPage = (page > 0) ? page - 1 : null;
+  const nextPage = (page < this.totalPages - 1) ? page + 1 : null;
+  console.log(`État mis à jour -> Précédente: ${previousPage}, Courante: ${this.currentPage}, Suivante: ${nextPage}`);
+}
+
+/**
+ * Vérifie s'il y a une page précédente disponible.
+ */
+private hasPreviousPage(): boolean {
+  return this.currentPage !== null && this.currentPage > 0;
+}
+
+/**
+ * Vérifie s'il y a une page suivante disponible.
+ */
+private hasNextPage(): boolean {
+  return this.currentPage !== null && this.currentPage < this.totalPages - 1;
+}
+
+/**
+ * Gère les événements de défilement pour les deux directions.
+ */
+
+
+// Durée en ms pendant laquelle l'utilisateur doit "forcer" le scroll
+private readonly WHEEL_HOLD_DURATION = 500;
+// Délai après lequel on considère que le scroll s'est arrêté
+private readonly WHEEL_STOP_DELAY = 250;
+
+// Minuteurs de chargement
+private wheelUpTimer: any = null;
+private wheelDownTimer: any = null;
+
+// Minuteur pour détecter l'arrêt de la molette
+private wheelStopDetectorTimer: any = null;
+
+// Flag de traitement
+private isWheelProcessing = false;
+
+public async onWheel(event: WheelEvent): Promise<void> {
+    if (this.isWheelProcessing || this.isResettingScroll) {
+        return;
+    }
+
+    const element = event.currentTarget as HTMLElement;
+
+    // --- On réinitialise le détecteur d'arrêt à chaque coup de molette ---
+    // C'est la partie la plus importante.
+    clearTimeout(this.wheelStopDetectorTimer);
+    this.wheelStopDetectorTimer = setTimeout(() => {
+        // Si ce minuteur se déclenche, c'est que la molette s'est arrêtée.
+        // On annule alors les minuteurs de chargement en cours.
+        console.log('Molette arrêtée. Annulation des minuteurs de chargement.');
+        clearTimeout(this.wheelUpTimer);
+        this.wheelUpTimer = null;
+        clearTimeout(this.wheelDownTimer);
+        this.wheelDownTimer = null;
+    }, this.WHEEL_STOP_DELAY);
+
+
+    // --- LOGIQUE POUR LE SCROLL VERS LE HAUT ---
+    const isAtTop = element.scrollTop === 0;
+    const isScrollingUp = event.deltaY < 0;
+
+    if (isAtTop && isScrollingUp && this.hasPreviousPage()) {
+        event.preventDefault();
+        // On ne démarre le minuteur de chargement que s'il n'est pas déjà lancé
+        if (!this.wheelUpTimer) {
+            console.log('Démarrage du minuteur de chargement HAUT...');
+            this.wheelUpTimer = setTimeout(async () => {
+                this.isWheelProcessing = true;
+                try {
+                    await this.chargerPagePrecedente();
+                } finally {
+                    this.isWheelProcessing = false;
+                    this.wheelUpTimer = null;
+                }
+            }, this.WHEEL_HOLD_DURATION);
+        }
+    }
+
+    // --- LOGIQUE POUR LE SCROLL VERS LE BAS ---
+    const isAtBottom = element.scrollTop + element.clientHeight >= element.scrollHeight - 1;
+    const isScrollingDown = event.deltaY > 0;
+
+    if (isAtBottom && isScrollingDown && this.hasNextPage()) {
+        event.preventDefault();
+        // On ne démarre le minuteur de chargement que s'il n'est pas déjà lancé
+        if (!this.wheelDownTimer) {
+            console.log('Démarrage du minuteur de chargement BAS...');
+            this.wheelDownTimer = setTimeout(async () => {
+                this.isWheelProcessing = true;
+                try {
+                    await this.chargerPageSuivante();
+                } finally {
+                    this.isWheelProcessing = false;
+                    this.wheelDownTimer = null;
+                }
+            }, this.WHEEL_HOLD_DURATION);
+        }
+    }
+}
+
+public onScroll(event: Event): void {
+    if (this.isResettingScroll) {
+        return;
+    }
+
+    // Si l'utilisateur scrolle normalement, c'est un "reset" de toutes les intentions.
+    // On annule TOUS les minuteurs en attente.
+    clearTimeout(this.wheelUpTimer);
+    this.wheelUpTimer = null;
+
+    clearTimeout(this.wheelDownTimer);
+    this.wheelDownTimer = null;
+
+    clearTimeout(this.wheelStopDetectorTimer);
+    this.wheelStopDetectorTimer = null;
+
+    // Le reste de la méthode peut rester si vous en avez besoin pour autre chose.
+    const element = event.target as HTMLElement;
+    this.lastScrollTop = element.scrollTop <= 0 ? 0 : element.scrollTop;
+}
+
+/**
+ * Charge la page suivante et met à jour l'état.
+ * Le scroll revient automatiquement en haut.
+ */
+private async chargerPageSuivante(): Promise<void> {
+  if (!this.hasNextPage()) return;
+
+  const nextPage = this.currentPage! + 1;
+  await this.chargerPageBai(nextPage);
+  this.setPage(nextPage);
+  this.scrollToTop();
+}
+
+/**
+ * Charge la page précédente et remet le scroll en haut.
+ */
+private async chargerPagePrecedente(): Promise<void> {
+  if (!this.hasPreviousPage()) return;
+
+  const previousPage = this.currentPage! - 1;
+  await this.chargerPageBai(previousPage);
+  this.setPage(previousPage);
+  this.scrollToTop();
+}
+
+/**
+ * Scrolle vers le haut sans déclencher d'effets de bord.
+ */
+public scrollToTop(): void {
+  try {
+    this.isResettingScroll = true;
+    this.lastScrollTop = 20;
+    this.preRef.nativeElement.scrollTop = 20;
+
+    // Réactive la détection après un court délai
+    setTimeout(() => {
+      this.isResettingScroll = false;
+    }, 2000);
+  } catch (err) {
+    console.error('L\'élément de scroll n\'a pas pu être trouvé.', err);
+    this.isResettingScroll = false;
+  }
+}
+
+
+
+
 
 }
